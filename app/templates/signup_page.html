@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <title>SCMXpert-Signup</title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <!-- <link rel="stylesheet" href="assets/css/fontawesome.css"> -->
+  <link rel="stylesheet" href="/static/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="/static/assets/css/templatemo-woox-travel.css">
+  <link rel="stylesheet" href="/static/assets/css/owl.css">
+  <link rel="stylesheet" href="/static/assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<style>
+  body {
+    overflow: hidden !important;
+  }  
+
+.rightCSS { 
+  background: #22b3c1;
+  color: #f9f9f9;
+  overflow: hidden;
+} 
+.rightCSS div {
+  position: relative;
+  animation: CSSright linear 15s infinite;
+} 
+@keyframes CSSright {
+  0% { right: -100% }
+  100% { right: 100% }
+}
+.rightCSS:hover div {
+  animation-play-state: paused;
+}
+
+.li {
+  float: left;
+  width: 80%;
+  padding: 12px 30px;
+  margin: 1% 10%;
+  height: 60px;
+  border-radius: 0.5em;
+  box-shadow: 0 0.1em 0.5em;
+  position: absolute;
+  border-radius: 25px;
+  font-weight: 500;
+}
+h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+     color: #6ecce9 !important;
+    font-weight: 500;
+}
+.card-title h2::after {
+    position: absolute;
+    width: 0px !important;
+    height: 2px;
+    /* background-color: rgba(250, 250, 250, 0.3); */
+    background-color: #e9ecef !important;
+    content: '';
+    left: 50%;
+    bottom: 473px !important;
+    transform: translateX(-50px);
+}
+</style>
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <div class="rightCSS li"><div>Exafluence is a global technology Innovation Partner. Accelerators get you live faster with less cost and risk</div></div>
+
+  <div class="overlay">
+    <div class=" container" style=" padding: 32px 10px 10px 10px;">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="card ">
+            <div class="card-title text-center">
+              <h2 class="p-3">Register</h2>
+              
+                {% if message %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                  swal("This email is already registered.", "Please use a different email to Join Us.", "warning");
+                   // Swal.fire("", "Email already exists", "warning");
+                </script>
+                {% endif %}
+              
+            </div>
+            <div class="card-body">
+              <form id="reservation-form" action="/signup" method="post" name="gs" role="search">
+                <div class="mb-2">
+                  <label for="login_user" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="login_user" placeholder="Username" name="username"required />
+                </div>
+                <div class="mb-2">
+                  <label for="login_user" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" id="user_mail" placeholder="Email" required/>
+                </div>
+                <div class="mb-2">
+                  <label for="password" class="form-label">Password</label>
+                  <!-- <input type="password" name="password"  id="txtNewPassword" class=" form-control pass"
+                    placeholder="Password" required/>
+                    <a href="#" class="password-control1" onclick="return show_hide_password_sign(this);"></a>
+                   -->
+                    <input  class="form-control pass"  placeholder="Password"   type="password" name="password" autocomplete="current-password" required id="txtNewPassword" style="display: -webkit-inline-box !important;
+                    width: 97% !important;">
+                    <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <span class="error" style="color:red"></span> 
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Confirm Password</label>
+                  <!-- <input type="password" name="cpassword" id="password-input"  class=" passConfirm form-control confirmpass"
+                    placeholder="Confirm Password" required/>
+                    <a href="#" class="password-control1" onclick="return show_hide_password_confirm(this);"></a> -->
+  
+                    <input  class=" passConfirm form-control confirmpass"  placeholder="Confirm Password"  type="password" name="cpassword" autocomplete="current-password" required id="password-input" style="    display: -webkit-inline-box !important;
+                    width: 97% !important;">
+                    <i class="far fa-eye" id="togglePassword_con" style="margin-left: -30px; cursor: pointer;"></i>
+  
+                    <span class="error" style="color:red"></span> 
+                </div>
+  
+                <div class="d-grid">
+                  <button id="submit" type="submit" class="button ">Register</button>
+                </div>
+                <div class="mb-2" style=" display: flex;">                
+                  <p style="margin: 0px 13px;">Already have an account?</p><a style="margin: 4px 7px;" href="/login">Login</a>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  </div>
+  
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="/static/assets/js/isotope.min.js"></script>
+  <script src="/static/assets/js/owl-carousel.js"></script>
+  <!-- <script src="/static/assets/js/wow.js"></script> -->
+  <script src="/static/assets/js/tabs.js"></script>
+  <script src="/static/assets/js/popup.js"></script>
+  <script src="/static/assets/js/custom.js"></script>
+
+  <script>
+    function bannerSwitcher() {
+      next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+      if (next.length) next.prop('checked', true);
+      else $('.sec-1-input').first().prop('checked', true);
+    }
+
+    var bannerTimer = setInterval(bannerSwitcher, 5000);
+
+    $('nav .controls label').click(function () {
+      clearInterval(bannerTimer);
+      bannerTimer = setInterval(bannerSwitcher, 5000)
+    });
+  </script>
+
+<script src="/static/js/signup.js"></script>
+
+
+</body>
+
+</html>
+

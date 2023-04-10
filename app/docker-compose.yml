@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  app:  
+    # image: 9581/addition:scmxpertapp
+    image: scmxpertapp:latest
+    ports:
+      - 8080:8080
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - "2181:2181"
+    depends_on:
+      - app   
+    environment:  
+      - ALLOW_ANONYMOUS_LOGIN=yes 
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:  
+      - "9092:9092"
+    depends_on:
+      - zookeeper    
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181   
+      - ALLOW_PLAINTEXT_LISTENER=yes
+  socket:
+    image: server:latest
+    depends_on:
+      - kafka 
+    ports:
+      - "5050:5050" 
+  producer:
+    image: producer:latest
+    depends_on:
+      - socket
+  consumer:
+    image: consumer:latest
+    depends_on:
+      - producer
+ 

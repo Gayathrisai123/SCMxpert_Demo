@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}SCMXpert{% endblock %}
+{% block head %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+
+<style>
+  /* html, body {
+     padding: 0px 0px 0px 0px !important;
+  } */
+</style>
+{% endblock %}
+
+{% block page_content %}
+<div class="second-page-heading overlay">
+  <div class="reservation-form">
+    <div class="container" style="margin: -274px auto;">
+      <div class="row  align-items-center justify-content-center ">
+        <div class="col-lg-9">
+          <form id="reservation-form" method="POST" action="/shipment">
+            <div class="row">
+              <div class="col-lg-12">
+                <h4> Create Shipment</h4>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="Shipment_invoicenumber" class="form-label">Shipment_invoicenumber</label>
+                  <input type="number" id="Shipment_invoicenumber" name="Shipment_invoicenumber" class="Name"
+                    placeholder="Shipment_invoicenumber" autocomplete="on" required>
+                  {% if message %}
+                  <script>
+                    Swal.fire("", "Invoice_Number already exists", "error");
+                  </script>
+                  {% endif %}
+                  {% if success_message %}
+                  <script>
+                    Swal.fire("", "shipment has been created successful", "success");
+                  </script>
+                  {% endif %}
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="container_number" class="form-label">container_number</label>
+                  <input type="number" id="container_number" name="Container_number" placeholder="container_number"
+                    autocomplete="on" required>                   
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="Expected_Delivery_Date" class="form-label">Expected_Delivery_Date</label>
+                  <input type="date" id="expected_delivery_date" name="expected_delivery_date" placeholder="container_number"
+                    autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="route_details" class="form-label">Route_Details</label>
+                  <select name="route" id="route" class="form-select"
+                    aria-label="Default select example" onChange="this.form.click()">
+                    <option value="">Routes</option>
+                    <option value="Chennai To Bang">Chennai To Bang</option>
+                    <option value="Newyork To London">Newyork To London</option>
+                    <option value="UK To USA">UK To USA</option>
+                    <option value="India To UK">India To UK</option>
+                  </select>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="goods_type" class="form-label">Goods_Type</label>
+                  <select name="goods" id="goods" class="form-select" aria-label="Default select example"
+                    onChange="this.form.click()">
+                    <option value="">Goods</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Cosmetics"> Cosmetics</option>
+                  </select>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="device" class="form-label">Device</label>
+                  <input type="number" id="device" name="device" placeholder="Device" autocomplete="on"
+                  required>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="PO_Number" class="form-label" id="PO_Number">PO_Number</label>
+                  <input type="number" id="po_number" name="po_number" placeholder="po_number" autocomplete="on"
+                    required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="delivery_number" class="form-label">Delivery_Number</label>
+                  <input type="number" id="delivery_number" name="delivery_number" placeholder="Delivery_Number"
+                    autocomplete="on" required>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="ndc_number" class="form-label">NDC_Number</label>
+                  <input type="number" id="ndc_number" name="ndc_number" placeholder="NDC_Number" autocomplete="on"
+                    required>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="batch_id" class="form-label">Batch_ID</label>
+                  <input type="number" id="Batch_id" name="Batch_id" placeholder="Batch_ID" autocomplete="on" required>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6">
+                <fieldset>
+                  <legend></legend>
+                  <label for="serialnumberofgoods" class="form-label">Serial_Number_of_Goods</label>
+                  <input type="number" id="serial_number_of_goods" name="serial_number_of_goods"
+                    placeholder="Serial_Number_of_Goods" autocomplete="on" required>
+                </fieldset>
+              </div>
+
+
+              <div class="col-lg-6" style="margin-bottom: 20px;">
+                <fieldset>
+                  <legend></legend>
+                  <label for="Shipment_description">Shipment Description:</label>
+                  <textarea class="form-control txtOnly" rows="5" id="Shipment_description" name="Shipment_description"
+                    onkeypress="return blockSpecialChar(event)" placeholder="Enter Your Description"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-md-6" style="margin-bottom: 30px;">
+                <fieldset>
+                  <legend></legend>
+                  <button type="reset" id="submit" class="main-button">Cancel Shipment</button>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-6 col-md-6" style="margin-bottom: 30px;">
+                <fieldset>
+                  <legend></legend>
+                  <button type="submit"  name="button" id="submit" class="main-button">Create Shipment</button>
+                </fieldset>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/shipment.js"></script>
+
+{% endblock %}

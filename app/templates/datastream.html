@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <title>SCMXpert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <style>
+        html,
+        body {            
+            padding: 0px 0px 4px 0px !important;
+
+        }
+
+        body {
+            /* overflow: hidden !important; */
+            color: #dee2e6 !important;
+        }
+
+        .sample {
+
+            
+            background-color: #f9f9f926;
+                border: 5px solid #f9f9f926;
+                box-shadow: 2px 4px 9px 8px #888888;
+
+            margin-top: 121px;
+            /* background: linear-gradient(to right, #176642, #6b9b85); */
+            padding: 27px;
+            /* background: linear-gradient(45deg, #00000063, #bbbbbb17); */
+            border-radius: 30px;
+            border: none;
+            /* box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.05), 0 0 0 10px rgb(133 46 46 / 5%); */
+        }
+
+        body:before {
+            position: fixed;
+            content: "";
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            background:rgba(0, 0, 0, 0.4) !important;
+        }
+
+        td {
+            word-break: break;
+
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/" class="logo">
+                            <img src="/static/assets/images/exflogo.png" alt="">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="/shipment">Create Shipment</a></li>
+                            <li><a href="/datastream">Device Data</a></li>
+                            {% if user %}                         
+                            <li> <a href="/logout" class="nav__link">
+                                    <i class="fa fas fa-right-from-bracket"></i>
+                                    <span class="text">Log Out</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li><a href="/signup">Signup</a></li>
+                            {% endif %}
+
+                        </ul>
+                        </ul>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    
+    <div class=" ">
+            <div class="container sample">
+                <div class="row justify-content-center mt-5"></div>
+                <div class="col-lg-4 col-md-6 col-sm-6"></div>
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <th>Battery Level</th>
+                            <th>Device ID</th>
+                            <th>First sensor temperature</th>
+                            <th>Route from</th>
+                            <th>Route to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in streaming_values %}
+                        <tr>
+                            <td>{{data.Battery_Level}}</td>
+                            <td>{{data.Device_ID}}</td>
+                            <td>{{data.First_Sensor_temperature}}</td>
+                            <td>{{data.Route_From}}</td>
+                            <td>{{data.Route_To}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    </div>
+    </div>
+
+    <script src="/static/assets/js/owl-carousel.js"></script>    
+    <script src="/static/assets/js/tabs.js"></script>
+    <script src="/static/assets/js/popup.js"></script>
+    <script src="/static/assets/js/custom.js"></script>
+
+</body>
+
+</html>

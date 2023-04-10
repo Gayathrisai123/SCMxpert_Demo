@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}SCMXpert{% endblock %}
+{% block head %}
+{% endblock %}
+
+
+  {% block page_content %}
+  <!-- ***** Main Banner Area Start ***** -->
+  
+  <section id="section-1">
+    <div class="content-slider">
+      <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>   
+      <div class="slider">
+        <div id="top-banner-1" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            {% if user %}
+            <div class="main-caption">              
+              <h1> Hi! <em>{{user["Username"]}}</em>   Welcome to SCMxpert </h1>
+              <div class="border-button"><a href="/shipment">Create Shipment</a>
+                 <a href="/datastream">Device Data</a></div>
+              
+            </div>
+            
+          </div>
+          {% else %}
+          <h1 id="title" class="drop-in" style="top: -9px;">SCMxpert</h1>
+                <h2>You are NOT logged in :(</h2>
+                <h4>
+                    Hello stranger. You are not logged. 
+                </h4>
+                <div class="center" style="text-align: center;position: relative;top: 2rem;">
+                  <a href="/auth/login" style=" text-decoration: none;" class="btn-get-started">Login</a>
+                </div>
+                {% endif %}
+        </div>
+        
+      </div>
+    
+    </div>
+  </section>
+  <!-- ***** Main Banner Area End ***** -->
+  {% endblock %}
+
+
+  {% block scripts %}
+  
+  {% endblock %}
