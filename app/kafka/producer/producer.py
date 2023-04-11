@@ -12,7 +12,7 @@ socket_conn = socket.socket()
 port = 5050
 SERVER = socket.gethostbyname(socket.gethostname())
 print(SERVER)
-socket_conn.connect(("socket", int(port)))
+socket_conn.connect((SERVER, int(port)))
 print(socket_conn.recv(1024))
 
 # Create a Kafka producer instance 
@@ -32,3 +32,4 @@ while True:
             print(f"Error: SystemExit ")
 
 socket_conn.close()
+

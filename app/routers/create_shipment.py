@@ -48,13 +48,11 @@ def createshipment(request: Request, Shipment_invoicenumber: str = Form(...), Co
         if not details:
             Shipment_collection.insert_one(user.dict())
             return templates.TemplateResponse("createshipment.html", {"request": request, "user": username, "success_message": "Success!  shipment has been created"})
-        return templates.TemplateResponse("createshipment.html", {"request": request, "user": username, "message": "*Shipment_Invoice_Number already exists"},
-                                          status_code="409")
+        return templates.TemplateResponse("createshipment.html", {"request": request, "user": username, "message": "*Shipment_Invoice_Number already exists"})
+                                         
     except Exception:
         details = f" Unprocessable Entity"
-        raise HTTPException(
-            {"request": request, "details": details}, status_code=422)
+        raise HTTPException({"request": request, "details": details}, status_code=422)
     except BaseException as exception:
         error_message = f"Internal Server Error: {str(exception)}"
-        raise HTTPException(
-            {"request": request, "error_message": error_message}, status_code=500)
+        raise HTTPException({"request": request, "error_message": error_message}, status_code=500)

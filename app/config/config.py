@@ -28,6 +28,7 @@ class Settings:
     COOKIE_NAME = os.getenv("COOKIE_NAME")
 
     # ---- Host parameters
+    
     HOST = os.getenv("HOST")
     PORT = (os.getenv("PORT"))
 

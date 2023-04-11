@@ -29,21 +29,20 @@ window.onload = function () {
 
 
 
-function spinner() {
-	//  SPINNER
-	$("#spinner").spinner();
-	
-	//  INPUT ONLY NUMBERS
-	$('#spinner').keyup(function () { 
-		 this.value = this.value.replace(/[^0-9]/g,'');
-	});
-}
-
-// INPUT NUMBER MAX LENGHT
-function maxLengthCheck(object) {
-	if (object.value.length > object.maxLength)
-		object.value = object.value.slice(0, object.maxLength)
-}
-
-
-
+var inputQuantity = [];
+    $(function() {     
+      $(".zipcode-number").on("keyup", function (e) {
+        var $field = $(this),
+            val=this.value,
+            $thisIndex=parseInt($field.data("idx"),11); 
+        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+            this.value = inputQuantity[$thisIndex];
+            return;
+        } 
+        if (val.length > Number($field.attr("maxlength"))) {
+          val=val.slice(0, 10);
+          $field.val(val);
+        }
+        inputQuantity[$thisIndex]=val;
+      });      
+    });

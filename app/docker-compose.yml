@@ -1,8 +1,7 @@
 version: '3.9'
 services:
   app:  
-    # image: 9581/addition:scmxpertapp
-    image: scmxpertapp:latest
+    image: 9581/addition:scmxpertapp
     ports:
       - 8080:8080
   zookeeper:
@@ -23,17 +22,17 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181   
       - ALLOW_PLAINTEXT_LISTENER=yes
   socket:
-    image: server:latest
+    image: 9581/addition:server
     depends_on:
       - kafka 
     ports:
       - "5050:5050" 
   producer:
-    image: producer:latest
+    image: 9581/addition:producer
     depends_on:
       - socket
   consumer:
-    image: consumer:latest
+    image: 9581/addition:consumer
     depends_on:
       - producer
  

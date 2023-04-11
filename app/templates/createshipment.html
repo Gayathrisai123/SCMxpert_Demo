@@ -51,8 +51,9 @@
                 <fieldset>
                   <legend></legend>
                   <label for="container_number" class="form-label">container_number</label>
-                  <input type="number" id="container_number" name="Container_number" placeholder="container_number"
+                  <input class="zipcode-number"  min="0" max="9999999999" maxlength="10"  type="number" id="container_number" name="Container_number" placeholder="container_number"
                     autocomplete="on" required>                   
+                    <!-- <input class="zipcode-number" type="number" min="0" max="9999999999" maxlength="10" name="" id="zipCode"> -->
                 </fieldset>
               </div>
               <div class="col-lg-6">
